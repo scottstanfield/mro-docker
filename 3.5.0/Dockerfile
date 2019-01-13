@@ -10,7 +10,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 ## (Based on https://github.com/rocker-org/rocker/blob/master/r-base/Dockerfile)
 ## Set a default user. Available via runtime flag `--user docker`
@@ -52,7 +52,7 @@ WORKDIR /home/docker
 RUN curl -LO -# https://mran.blob.core.windows.net/install/mro/$MRO_VERSION/microsoft-r-open-$MRO_VERSION.tar.gz \
 	&& tar -xzf microsoft-r-open-$MRO_VERSION.tar.gz
 WORKDIR /home/docker/microsoft-r-open
-RUN  ./install.sh -a -u
+RUN  ./install.sh --accept-mkl-eula --unattended
 
 # Clean up downloaded files
 WORKDIR /home/docker
